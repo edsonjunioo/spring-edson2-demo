@@ -41,9 +41,9 @@
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding>
-                <marker date="1519244721166" expanded="true" signature="63188:63230" ph="..." />
-                <marker date="1519244721166" expanded="true" signature="63188:63248" ph="..." />
-                <marker date="1519244721166" expanded="true" signature="63188:63261" ph="..." />
+                <marker date="1519245272224" expanded="true" signature="63188:63230" ph="..." />
+                <marker date="1519245272224" expanded="true" signature="63188:63248" ph="..." />
+                <marker date="1519245272224" expanded="true" signature="63188:63261" ph="..." />
               </folding>
             </state>
           </provider>
@@ -366,7 +366,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25931000" />
+    <option name="totallyTimeSpent" value="26407000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="51" y="-4" width="1315" height="772" extended-state="6" />
