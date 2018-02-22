@@ -2,9 +2,11 @@ package com.example.demo.controller;
 
 
 import com.example.demo.VeiculoService;
+import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.*;
 import com.example.demo.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -87,23 +89,19 @@ public class VeiculoController extends Object{
     // Get a Single Note
     @GetMapping("/veiculo/{codigo}")
     public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long veiculoId) {
+        verifyIfCarExists(veiculoId);
         Veiculo veiculo = veiculoRepository.findOne(veiculoId);
-        if (veiculo == null) {
-            return ResponseEntity.notFound().build();
-        }
         return ResponseEntity.ok().body(veiculo);
     }
 
 
     // Update a Veiculo
     @PutMapping("/alter_veiculo/{codigo}")
-    public ResponseEntity<Veiculo> updateNote(@PathVariable(value = "codigo") Long noteId,
+    public ResponseEntity<Veiculo> updateNote(@PathVariable(value = "codigo") Long veiculoId,
                                               @Valid @RequestBody Veiculo veiculoDetails) {
-        Veiculo veiculo = veiculoRepository.findOne(noteId);
-        if (veiculo == null) {
-            return ResponseEntity.notFound().build();
-        }
 
+        verifyIfCarExists(veiculoId);
+        Veiculo veiculo = veiculoRepository.findOne(veiculoId);
 
         veiculo.setMarca(veiculoDetails.getMarca());
         veiculo.setModelo(veiculoDetails.getModelo());
@@ -121,12 +119,10 @@ public class VeiculoController extends Object{
 
     // Delete a Veiculo
     @DeleteMapping("/delete_veiculo/{codigo}")
-    public ResponseEntity<Veiculo> deleteNote(@PathVariable(value = "codigo") Long noteId) {
-        Veiculo veiculo = veiculoRepository.findOne(noteId);
-        if (veiculo == null) {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long veiculoId) {
 
+        verifyIfCarExists(veiculoId);
+        Veiculo veiculo = veiculoRepository.findOne(veiculoId);
         veiculoRepository.delete(veiculo);
         return ResponseEntity.ok().build();
     }
@@ -288,8 +284,11 @@ public class VeiculoController extends Object{
 
         return response;
 
+    }
 
-
+    public void verifyIfCarExists(Long veiculoId){
+        if(veiculoRepository.findOne(veiculoId) == null)
+            throw new ResourceNotFoundException("Student not Found for ID: " + veiculoId);
     }
 
 
