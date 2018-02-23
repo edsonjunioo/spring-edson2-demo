@@ -4,6 +4,8 @@ package com.example.demo.controller;
 import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.Cliente;
 import com.example.demo.repository.ClienteRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,9 +19,10 @@ public class ClienteController extends Object {
     public ClienteController() {
     }
 
+    @Autowired
     ClienteRepository clienteRepository;
 
-    @GetMapping("/get_client")
+    @GetMapping("/get")
     public List<Cliente> getAllCliente() {
 
         List<Cliente> cliente = clienteRepository.findAll();
@@ -29,7 +32,7 @@ public class ClienteController extends Object {
     }
 
 
-    @PostMapping("/create_client")
+    @PostMapping("/create")
     public String inserirCliente(@Valid @RequestBody Cliente cliente) {
 
         Cliente response = new Cliente(cliente.getCpf(),cliente.getNome(),cliente.getEndereco(),cliente.getTelefone());
@@ -41,9 +44,17 @@ public class ClienteController extends Object {
         return sucess;
     }
 
+    @GetMapping("/get/{codigo}")
+    public ResponseEntity<Object> getClientebyId(@PathVariable(value = "codigo") Long clienteId) {
+        verifyIfClientExists(clienteId);
+        Cliente cliente = clienteRepository.findOne(clienteId);
+
+        return ResponseEntity.ok().build();
+    }
+
     // Update de cliente
-    @PutMapping("/alter_client/{codigo}")
-    public String updateNote(@PathVariable(value = "codigo") Long clienteId,
+    @PutMapping("/alter/{codigo}")
+    public String updateClient(@PathVariable(value = "codigo") Long clienteId,
                              @Valid @RequestBody Cliente clienteDetails) {
 
 
@@ -64,9 +75,6 @@ public class ClienteController extends Object {
         return sucess;
 
     }
-
-
-
     public void verifyIfClientExists(Long clienteId){
         if(clienteRepository.findOne(clienteId) == null)
             throw new ResourceNotFoundException("Student not Found for ID: " + clienteId);
