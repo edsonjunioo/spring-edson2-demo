@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.Cliente;
+import com.example.demo.model.Funcionario;
 import com.example.demo.repository.ClienteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,7 +13,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("client")
+@RequestMapping("/client")
 public class ClienteController extends Object {
 
 
@@ -75,6 +76,17 @@ public class ClienteController extends Object {
         return sucess;
 
     }
+
+    // Delete a Veiculo
+    @DeleteMapping("/delete/{codigo}")
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long clienteId) {
+
+        verifyIfClientExists(clienteId);
+        Cliente cliente = clienteRepository.findOne(clienteId);
+        clienteRepository.delete(cliente);
+        return ResponseEntity.ok().build();
+    }
+
     public void verifyIfClientExists(Long clienteId){
         if(clienteRepository.findOne(clienteId) == null)
             throw new ResourceNotFoundException("Student not Found for ID: " + clienteId);

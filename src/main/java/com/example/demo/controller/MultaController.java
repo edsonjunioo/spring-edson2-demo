@@ -11,6 +11,8 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+@RestController
+@RequestMapping("/multa")
 public class MultaController extends Object {
 
     public MultaController() {
@@ -86,8 +88,6 @@ public class MultaController extends Object {
         multaRepository.delete(multa);
         return ResponseEntity.ok().build();
     }
-
-
 
     public void verifyIfMultaExists(Long multaId){
         if(multaRepository.findOne(multaId) == null)

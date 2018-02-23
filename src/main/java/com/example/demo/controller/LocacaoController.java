@@ -5,14 +5,13 @@ import com.example.demo.model.Locacao;
 import com.example.demo.repository.LocacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
+@RestController
+@RequestMapping("/location")
 public class LocacaoController extends Object {
 
     public LocacaoController() {
@@ -50,6 +49,17 @@ public class LocacaoController extends Object {
 
         return ResponseEntity.ok().build();
 
+    }
+
+
+    // Delete a Veiculo
+    @DeleteMapping("/delete/{codigo}")
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long locacaoId) {
+
+        verifyIfCarExists(locacaoId);
+        Locacao locacao = locacaoRepository.findOne(locacaoId);
+        locacaoRepository.delete(locacao);
+        return ResponseEntity.ok().build();
     }
 
 

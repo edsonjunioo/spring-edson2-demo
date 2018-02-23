@@ -4,6 +4,7 @@ import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.Funcionario;
 import com.example.demo.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -11,7 +12,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("Employe")
+@RequestMapping("/Employe")
 public class FuncionarioController extends Object {
 
     public FuncionarioController() {
@@ -44,8 +45,18 @@ public class FuncionarioController extends Object {
 
     }
 
+    // Delete a Veiculo
+    @DeleteMapping("/delete/{codigo}")
+    public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long funcionarioId) {
 
-    public void verifyIfClientExists(Long funcionarioId){
+        verifyIfFuncionarioExists(funcionarioId);
+        Funcionario funcionario = funcionarioRepository.findOne(funcionarioId);
+        funcionarioRepository.delete(funcionario);
+        return ResponseEntity.ok().build();
+    }
+
+
+    public void verifyIfFuncionarioExists(Long funcionarioId){
         if(funcionarioRepository.findOne(funcionarioId) == null)
             throw new ResourceNotFoundException("Funcionario not Found for ID: " + funcionarioId);
     }

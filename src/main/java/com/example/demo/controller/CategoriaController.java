@@ -1,16 +1,18 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.error.ResourceNotFoundException;
 import com.example.demo.model.Categoria;
 import com.example.demo.repository.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("categoria")
+@RequestMapping("/categoria")
 public class CategoriaController extends Object{
 
     public CategoriaController() {
@@ -41,6 +43,37 @@ public class CategoriaController extends Object{
 
         return sucess;
 
+    }
+
+    // Get a Single Note
+    @GetMapping("/get/{codigo}")
+    public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long categoriaId) {
+        verifyIfCategoriaExists(categoriaId);
+        Categoria categoria = categoriaRepository.findOne(categoriaId);
+        return ResponseEntity.ok().body(categoria);
+    }
+
+    // Update a Veiculo
+    @PutMapping("/alter/{codigo}")
+    public ResponseEntity<Categoria> updateNote(@PathVariable(value = "codigo") Long categoriaId,
+                                              @Valid @RequestBody Categoria categoriaDetails) {
+
+        verifyIfCategoriaExists(categoriaId);
+        Categoria categoria = categoriaRepository.findOne(categoriaId);
+
+        categoria.setDescricao(categoriaDetails.getDescricao());
+
+
+
+        Categoria updatedCategoria = categoriaRepository.save(categoria);
+        return ResponseEntity.ok(updatedCategoria);
+
+    }
+
+
+    public void verifyIfCategoriaExists(Long veiculoId){
+        if(categoriaRepository.findOne(veiculoId) == null)
+            throw new ResourceNotFoundException("Veiculo not Found for ID: " + veiculoId);
     }
 
 
