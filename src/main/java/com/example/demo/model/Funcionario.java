@@ -36,7 +36,6 @@ public class Funcionario implements Serializable{
     private String nome;
 
     @NotBlank
-    @JoinTable(name="cliente",joinColumns={@JoinColumn(name="cpf",referencedColumnName="cpf")})
     private String cpf;
 
     @NotBlank
@@ -44,15 +43,6 @@ public class Funcionario implements Serializable{
 
     @NotBlank
     private String telefone;
-
-
-
-
-
-
-
-
-
 
     public Long getMatricula() {
         return matricula;

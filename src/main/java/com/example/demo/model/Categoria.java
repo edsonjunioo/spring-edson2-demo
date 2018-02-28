@@ -31,16 +31,6 @@ public class Categoria implements Serializable{
     @NotBlank
     private String descricao;
 
-
-
-    //categoria construtor
-    /*
-    public Categoria(String descricao) {
-        this.descricao = descricao;
-    }
-
-    */
-
     public String getDescricao() {
         return descricao;
     }

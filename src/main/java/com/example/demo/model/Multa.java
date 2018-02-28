@@ -15,9 +15,9 @@ import java.util.List;
 public class Multa implements Serializable{
 
 
-
-    public Multa(String status) {
+    public Multa(String status, int valor) {
         this.status = status;
+        this.valor = valor;
     }
 
     public Multa() {
@@ -31,6 +31,10 @@ public class Multa implements Serializable{
 
     @Column
     String status;
+
+    @Column
+    int valor;
+
 
     public Long getCodigo() {
         return codigo;
@@ -51,5 +55,13 @@ public class Multa implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getValor() {
+        return valor;
+    }
+
+    public void setValor(int valor) {
+        this.valor = valor;
     }
 }

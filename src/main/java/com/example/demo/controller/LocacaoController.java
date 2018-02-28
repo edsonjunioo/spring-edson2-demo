@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.error.ResourceNotFoundException;
+import com.example.demo.model.Funcionario;
 import com.example.demo.model.Locacao;
 import com.example.demo.repository.LocacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,10 +45,27 @@ public class LocacaoController extends Object {
 
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getLocationbyId(@PathVariable(value = "codigo") Long locacaoId){
-        verifyIfCarExists(locacaoId);
+        verifyIfLocacaoExists(locacaoId);
         Locacao locacao = locacaoRepository.findOne(locacaoId);
 
         return ResponseEntity.ok().build();
+
+    }
+
+    // Update a Veiculo
+    @PutMapping("/alter/{codigo}")
+    public ResponseEntity<Locacao> updateNote(@PathVariable(value = "codigo") Long locacaoId,
+                                                  @Valid @RequestBody Locacao locacaoDetails) {
+
+        verifyIfLocacaoExists(locacaoId);
+        Locacao locacao = locacaoRepository.findOne(locacaoId);
+
+        locacao.setData(locacaoDetails.getData());
+        locacao.setHora(locacaoDetails.getHora());
+
+
+        Locacao updatedLocacao = locacaoRepository.save(locacao);
+        return ResponseEntity.ok(updatedLocacao);
 
     }
 
@@ -56,7 +74,7 @@ public class LocacaoController extends Object {
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long locacaoId) {
 
-        verifyIfCarExists(locacaoId);
+        verifyIfLocacaoExists(locacaoId);
         Locacao locacao = locacaoRepository.findOne(locacaoId);
         locacaoRepository.delete(locacao);
         return ResponseEntity.ok().build();
@@ -64,7 +82,7 @@ public class LocacaoController extends Object {
 
 
 
-    public void verifyIfCarExists(Long locacaoId){
+    public void verifyIfLocacaoExists(Long locacaoId){
         if(locacaoRepository.findOne(locacaoId) == null)
             throw new ResourceNotFoundException("Locacao not found para o ID: " + locacaoId);
 

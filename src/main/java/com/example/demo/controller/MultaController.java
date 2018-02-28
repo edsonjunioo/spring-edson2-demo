@@ -39,7 +39,7 @@ public class MultaController extends Object {
     @PostMapping("/create")
     public String criarMulta(@Valid @RequestBody Multa multa) {
 
-        Multa response = new Multa(multa.getStatus());
+        Multa response = new Multa(multa.getStatus(),multa.getValor());
         response.equals(multaRepository.save(multa));
 
 

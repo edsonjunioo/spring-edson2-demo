@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.error.ResourceNotFoundException;
+import com.example.demo.model.Cliente;
 import com.example.demo.model.Funcionario;
 import com.example.demo.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +41,40 @@ public class FuncionarioController extends Object {
         String sucess = " Inserção na tabela Funcionario efetuada com sucesso!\n"+
                 " Verificar dados através da URL api/get_employer";
 
+
+        return sucess;
+
+    }
+
+    // Get a Single Note
+    @GetMapping("/get/{codigo}")
+    public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long funcionarioId) {
+        verifyIfFuncionarioExists(funcionarioId);
+        Funcionario funcionario = funcionarioRepository.findOne(funcionarioId);
+        return ResponseEntity.ok().body(funcionario);
+    }
+
+
+
+    // Update de funcionario
+    @PutMapping("/alter/{codigo}")
+    public String updateClient(@PathVariable(value = "codigo") Long funcionarioId,
+                               @Valid @RequestBody Funcionario funcionarioDetails) {
+
+
+        verifyIfFuncionarioExists(funcionarioId);
+
+        Funcionario funcionario = funcionarioRepository.findOne(funcionarioId);
+
+        funcionario.setNome(funcionarioDetails.getNome());
+        funcionario.setCpf(funcionarioDetails.getCpf());
+        funcionario.setEndereco(funcionarioDetails.getEndereco());
+        funcionario.setTelefone(funcionarioDetails.getTelefone());
+
+
+        Funcionario updatedFuncionario = funcionarioRepository.save(funcionario);
+
+        String sucess = "Mensagem alterada com sucesso";
 
         return sucess;
 

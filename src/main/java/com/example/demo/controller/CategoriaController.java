@@ -71,9 +71,20 @@ public class CategoriaController extends Object{
     }
 
 
-    public void verifyIfCategoriaExists(Long veiculoId){
-        if(categoriaRepository.findOne(veiculoId) == null)
-            throw new ResourceNotFoundException("Veiculo not Found for ID: " + veiculoId);
+    // Delete a Veiculo
+    @DeleteMapping("/delete/{codigo}")
+    public ResponseEntity<?> deleteMulta(@PathVariable(value = "codigo") Long categoriaId) {
+
+        verifyIfCategoriaExists(categoriaId);
+        Categoria categoria = categoriaRepository.findOne(categoriaId);
+        categoriaRepository.delete(categoria);
+        return ResponseEntity.ok().build();
+    }
+
+
+    public void verifyIfCategoriaExists(Long categoriaId){
+        if(categoriaRepository.findOne(categoriaId) == null)
+            throw new ResourceNotFoundException("Veiculo not Found for ID: " + categoriaId);
     }
 
 
