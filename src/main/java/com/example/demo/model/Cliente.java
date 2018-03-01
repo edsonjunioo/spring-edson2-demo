@@ -45,9 +45,6 @@ public class Cliente implements Serializable {
     @Column
     private String telefone;
 
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
 
     public Long getCodigo() {
         return codigo;

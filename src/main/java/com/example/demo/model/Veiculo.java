@@ -56,11 +56,6 @@ public class Veiculo implements Serializable{
     private String observacao;
 
 
-
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
     public Long getCodigo() {
         return codigo;
     }

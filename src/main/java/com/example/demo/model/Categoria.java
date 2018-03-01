@@ -31,6 +31,15 @@ public class Categoria implements Serializable{
     @NotBlank
     private String descricao;
 
+
+    public Long getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(Long codigo) {
+        this.codigo = codigo;
+    }
+
     public String getDescricao() {
         return descricao;
     }

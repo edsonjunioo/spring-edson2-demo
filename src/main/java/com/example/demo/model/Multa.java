@@ -45,10 +45,6 @@ public class Multa implements Serializable{
     }
 
 
-
-
-
-
     public String getStatus() {
         return status;
     }

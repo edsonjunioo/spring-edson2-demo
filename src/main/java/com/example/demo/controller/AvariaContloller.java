@@ -40,7 +40,7 @@ public class AvariaContloller extends Object{
         return response;
     }
 
-    // Get a Single Note
+
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long avariaId) {
         verifyIfAvariaExists(avariaId);
@@ -49,7 +49,6 @@ public class AvariaContloller extends Object{
     }
 
 
-    // Update a Veiculo
     @PutMapping("/alter/{codigo}")
     public ResponseEntity<Avaria> updateNote(@PathVariable(value = "codigo") Long avariaId,
                                               @Valid @RequestBody Avaria avariaDetails) {
@@ -67,7 +66,7 @@ public class AvariaContloller extends Object{
 
     }
 
-    // Delete a Veiculo
+
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long avariaId) {
 

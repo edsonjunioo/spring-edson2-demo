@@ -22,7 +22,6 @@ public class LocacaoController extends Object {
     LocacaoRepository locacaoRepository;
 
 
-    //buscar locações
     @GetMapping("/get")
     public List<Locacao> getLocations() {
 
@@ -31,7 +30,6 @@ public class LocacaoController extends Object {
         return locacao;
     }
 
-    //criar locações
     @PostMapping("/create")
     public Locacao doLocations(@Valid @RequestBody Locacao locacao){
 
@@ -52,7 +50,6 @@ public class LocacaoController extends Object {
 
     }
 
-    // Update a Veiculo
     @PutMapping("/alter/{codigo}")
     public ResponseEntity<Locacao> updateNote(@PathVariable(value = "codigo") Long locacaoId,
                                                   @Valid @RequestBody Locacao locacaoDetails) {
@@ -69,8 +66,6 @@ public class LocacaoController extends Object {
 
     }
 
-
-    // Delete a Veiculo
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long locacaoId) {
 

@@ -45,6 +45,7 @@ public class ClienteController extends Object {
         return sucess;
     }
 
+
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getClientebyId(@PathVariable(value = "codigo") Long clienteId) {
         verifyIfClientExists(clienteId);
@@ -53,7 +54,7 @@ public class ClienteController extends Object {
         return ResponseEntity.ok().build();
     }
 
-    // Update de cliente
+
     @PutMapping("/alter/{codigo}")
     public String updateClient(@PathVariable(value = "codigo") Long clienteId,
                              @Valid @RequestBody Cliente clienteDetails) {
@@ -77,7 +78,7 @@ public class ClienteController extends Object {
 
     }
 
-    // Delete a Veiculo
+
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long clienteId) {
 

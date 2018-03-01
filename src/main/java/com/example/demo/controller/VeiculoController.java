@@ -24,7 +24,6 @@ public class VeiculoController extends Object{
     VeiculoRepository veiculoRepository;
 
 
-
     @GetMapping("/get")
     public List<Veiculo> getAllVeiculos() {
 
@@ -33,7 +32,6 @@ public class VeiculoController extends Object{
         return veiculo;
     }
 
-    // Create a new Note
     @PostMapping("/create")
     public String createVeiculo(@Valid @RequestBody Veiculo veiculo) {
 
@@ -47,7 +45,7 @@ public class VeiculoController extends Object{
         return sucess;
     }
 
-    // Get a Single Note
+
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long veiculoId) {
         verifyIfCarExists(veiculoId);
@@ -56,7 +54,6 @@ public class VeiculoController extends Object{
     }
 
 
-    // Update a Veiculo
     @PutMapping("/alter/{codigo}")
     public ResponseEntity<Veiculo> updateNote(@PathVariable(value = "codigo") Long veiculoId,
                                               @Valid @RequestBody Veiculo veiculoDetails) {
@@ -78,7 +75,6 @@ public class VeiculoController extends Object{
     }
 
 
-    // Delete a Veiculo
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long veiculoId) {
 

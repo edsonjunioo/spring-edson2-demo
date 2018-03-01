@@ -45,7 +45,7 @@ public class CategoriaController extends Object{
 
     }
 
-    // Get a Single Note
+
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long categoriaId) {
         verifyIfCategoriaExists(categoriaId);
@@ -53,7 +53,7 @@ public class CategoriaController extends Object{
         return ResponseEntity.ok().body(categoria);
     }
 
-    // Update a Veiculo
+
     @PutMapping("/alter/{codigo}")
     public ResponseEntity<Categoria> updateNote(@PathVariable(value = "codigo") Long categoriaId,
                                               @Valid @RequestBody Categoria categoriaDetails) {
@@ -71,7 +71,6 @@ public class CategoriaController extends Object{
     }
 
 
-    // Delete a Veiculo
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteMulta(@PathVariable(value = "codigo") Long categoriaId) {
 

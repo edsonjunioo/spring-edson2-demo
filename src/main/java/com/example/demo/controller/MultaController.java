@@ -21,7 +21,7 @@ public class MultaController extends Object {
     @Autowired
     MultaRepository multaRepository;
 
-    //buscar multas
+
     @GetMapping("/get")
     public List<Multa> buscarMulta() {
 
@@ -35,7 +35,6 @@ public class MultaController extends Object {
     }
 
 
-    //criar multas
     @PostMapping("/create")
     public String criarMulta(@Valid @RequestBody Multa multa) {
 
@@ -53,7 +52,6 @@ public class MultaController extends Object {
     }
 
 
-    // Get a Single multa
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long multaId) {
         verifyIfMultaExists(multaId);
@@ -61,7 +59,7 @@ public class MultaController extends Object {
         return ResponseEntity.ok().body(multa);
     }
 
-    // Update a Veiculo
+
     @PutMapping("/alter/{codigo}")
     public ResponseEntity<Multa> updateNote(@PathVariable(value = "codigo") Long multaId,
                                               @Valid @RequestBody Multa multaDetails) {
@@ -79,7 +77,6 @@ public class MultaController extends Object {
     }
 
 
-    // Delete a Veiculo
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteMulta(@PathVariable(value = "codigo") Long multaId) {
 

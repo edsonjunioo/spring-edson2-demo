@@ -46,7 +46,7 @@ public class FuncionarioController extends Object {
 
     }
 
-    // Get a Single Note
+
     @GetMapping("/get/{codigo}")
     public ResponseEntity<Object> getNoteById(@PathVariable(value = "codigo") Long funcionarioId) {
         verifyIfFuncionarioExists(funcionarioId);
@@ -55,8 +55,6 @@ public class FuncionarioController extends Object {
     }
 
 
-
-    // Update de funcionario
     @PutMapping("/alter/{codigo}")
     public String updateClient(@PathVariable(value = "codigo") Long funcionarioId,
                                @Valid @RequestBody Funcionario funcionarioDetails) {
@@ -80,7 +78,7 @@ public class FuncionarioController extends Object {
 
     }
 
-    // Delete a Veiculo
+
     @DeleteMapping("/delete/{codigo}")
     public ResponseEntity<?> deleteNote(@PathVariable(value = "codigo") Long funcionarioId) {
 
