@@ -25,8 +25,8 @@ public class Multa implements Serializable{
 
     private static final long serialVersionUID = 1L;
 
-    @Column
-    @JoinTable(name = "veiculo", joinColumns = @JoinColumn(name = "codigo")
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long codigo;
 
     @Column
