@@ -1,2 +1,2 @@
-INSERT INTO funcionario(status,valor) VALUES('nada consta','0.0');
-INSERT INTO funcionario(status,valor) VALUES('vencida', '100.00');
+INSERT INTO funcionario(nome,cpf,endereco,telefone) VALUES('jose','12345678979','Rua; X','32313164');
+INSERT INTO funcionario(nome,cpf,endereco,telefone) VALUES('maria', '12345678980','Rua; Y','32313165');

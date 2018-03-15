@@ -1,0 +1,2 @@
+INSERT INTO cliente(cpf,nome,endereco,telefone) VALUES('12345678990','lara','Av: 45','13131313131');
+INSERT INTO cliente(cpf,nome,endereco,telefone) VALUES('12345678991','pedro','Av: 80','46464646464');
