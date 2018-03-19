@@ -1,2 +1,0 @@
-INSERT INTO veiculo(marca, modelo, data, ano, valor, observacao) VALUES('chevrolet', 'onix', '01/01/2018','2018','50000','novo');
-INSERT INTO veiculo(marca, modelo, data, ano, valor, observacao) VALUES('volks', 'gol', '01/01/2018','2018','50000','novo');
