@@ -1,8 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.example.demo.SpringbootEdson2DemoApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.453 sec <<< FAILURE! - in com.example.demo.SpringbootEdson2DemoApplicationTests
-contextLoads(com.example.demo.SpringbootEdson2DemoApplicationTests)  Time elapsed: 0.052 sec  <<< ERROR!
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 7.794 sec <<< FAILURE! - in com.example.demo.SpringbootEdson2DemoApplicationTests
+contextLoads(com.example.demo.SpringbootEdson2DemoApplicationTests)  Time elapsed: 0.067 sec  <<< ERROR!
 java.lang.IllegalStateException: Failed to load ApplicationContext
 	at org.springframework.test.context.cache.DefaultCacheAwareContextLoaderDelegate.loadContext(DefaultCacheAwareContextLoaderDelegate.java:124)
 	at org.springframework.test.context.support.DefaultTestContext.getApplicationContext(DefaultTestContext.java:83)
